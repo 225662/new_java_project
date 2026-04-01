@@ -1,21 +1,16 @@
-//Concrete class 1
-class book {
-        private String Author;
+public class book {
+    private String title;
 
-        public book (String title, String author){
-            this.Author=author;
-        }
-
-      public void displayInfo (){
-            System.out.println("Book:");
-      } 
-
-      public void borrowItem (){
-        System.out.println("borrowed");
-      }
-      
-      public void returnItem (){
-        System.out.println("returned");
-      }
-      
+    public book(String title){
+        this.title = title;
     }
+
+    public String getTitle(){
+        return title;
+    }
+
+    @Override
+    public String toString(){
+        return "book: " + title;
+    }
+}

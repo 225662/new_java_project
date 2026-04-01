@@ -1,32 +1,50 @@
+import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.IOException;
 
-import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
 
-public class main {
-    static Scanner scanner= new Scanner(System.in);
-public static void main (String[] args){
-    
-    try{
-        
+        // --- COLLECTIONS ---
+        ArrayList<Book> books = new ArrayList<>();
+        book.add(new book("Things Fall Apart"));
+        book.add(new book("Programming bgook"));
+        book.add(new book("Rich Dad Poor Dad"));
 
-        System.out.print("Enter the name of the book ");
-        String bookTitle = scanner.nextLine();
+        System.out.println("Books in system:");
+        for (book b : book) {
+            System.out.println(b);
+        }
 
-        System.out.print("Enter the name of the author ");
-        String author = scanner.nextLine();
+        //  SAVE TO FILE 
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("books.txt"));
+            for (book b : book) {
+                writer.write(b.getTitle());
+                writer.newLine();
+            }
+            writer.close();
+            System.out.println("Books saved to books.txt");
+        } catch (IOException e) {
+            System.out.println("Error saving: " + e.getMessage());
+        }
 
-        System.out.print("Enter the name of the student ");
-        String memberName = scanner.nextLine();
-
-        System.out.print("Enter the member number ");
-        int memberNumber = scanner.nextInt();
-
-    }catch (NumberFormatException e){
-        System.out.println("invalid studentId");
-    }catch (Exception e){
-        System.out.println("unexpected error:e.getmessage()");
-    }finally{
-        scanner.close();
-        System.out.println("System is complete");
+        //  READ FROM FILE 
+        System.out.println("Reading from file:");
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("books.txt"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("Error reading: " + e.getMessage());
+        }
     }
 }
-}
+
+
